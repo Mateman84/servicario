@@ -34,10 +34,35 @@ import './home.css'
 class Home extends React.Component {
 
 
+    constructor(){
+        super()
+        this.state = {
+            message: 'Super Message!!!!'
+        }
+    }
+    
+
+
+    //Lifecycle function, componentDidMount, is a lifecycle function that is called only once
+    componentDidMount(){
+        //debugger
+        setTimeout(() => {
+            // använd set state när du vill ändra på ett state. 
+            this.setState({message: 'I am new message'})
+        }, 1000)
+    }
+
+    /*
+    Lifecycle function render
+    is a lifecycle function that is called whenever a state is changed. 
+    */
     render (){
+        //debugger
+        const { message } = this.state
         return (
             <div className="container">
             <h1>I am Home class page</h1>
+            <p>{ message }</p>
             </div>
         )
     }
