@@ -1,6 +1,9 @@
 
 import React, {useState, useEffect} from 'react'
+//import Counter from'../components/Counter.js'
+import Counter from '../components/FunctionalCounter.js'
 import './home.css'
+
 
 //Functional component = are smaller components presentational components since you don't have to write alot of code.
 // In most cases they are reusable their focus should be on one thing.
@@ -70,6 +73,11 @@ import './home.css'
 
 class Home extends React.Component {
 
+    state = {
+        message: 'Super Message!!!!'
+    }
+
+   /* 
    constructor(props){
         super(props)
         this.state = {
@@ -78,7 +86,7 @@ class Home extends React.Component {
         }
 
         this.decrement = this.decrement.bind(this)
-     }
+     }*/
 
     //Lifecycle function, componentDidMount, is a lifecycle function that is called only once
     componentDidMount(){
@@ -89,8 +97,16 @@ class Home extends React.Component {
         }, 1000)
     }
 
+    displayMessage = (type, count) => {
+        if(type === "increment"){
+            alert(`Your number was incremented! Current value: ${ count }`)
+            return
+        }
+        alert(`Your number was decremented! Current value: ${ count }`)
+    }
+
     
-    increment = () => {
+    /*increment = () => {
         const { count } = this.state
         this.setState({count: count + 1})
     }
@@ -99,26 +115,29 @@ class Home extends React.Component {
     decrement() {
         const { count } = this.state
         this.setState({count: count - 1})
-    }
+    }*/
 
     //Lifecycle function render
     //is a lifecycle function that is called whenever a state is changed. 
 
     render (){
         //debugger
-        const { message, count } = this.state
+        const { message/*, count*/ } = this.state
         return (
             <div className="container">
                 <h1>I am Home page</h1>
                 <p>{message}</p>
-                <button onClick={this.increment}>Increment</button>
+                <Counter 
+                onChange = {this.displayMessage}
+                title="I'm the counter"/>
+                {/*<button onClick={this.increment}>Increment</button>
                 <div className="counter">{count}</div>
-                {/* <button onClick={() => this.decrement()}>Decrement</button> */}
-                {/*<button onClick={this.decrement.bind(this)}>Decrement</button>*/}
-                <button onClick={this.decrement}>Decrement</button>
+                 <button onClick={() => this.decrement()}>Decrement</button> 
+                <button onClick={this.decrement.bind(this)}>Decrement</button>
+                <button onClick={this.decrement}>Decrement</button>*/ }
             </div>
         )
     }
 }  
 
-export default Home
+export default Home 
