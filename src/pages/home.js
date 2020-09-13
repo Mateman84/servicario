@@ -1,143 +1,109 @@
+/* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, {useState, useEffect} from 'react'
-//import Counter from'../components/Counter.js'
-import Counter from '../components/FunctionalCounter.js'
-import './home.css'
-
-
-//Functional component = are smaller components presentational components since you don't have to write alot of code.
-// In most cases they are reusable their focus should be on one thing.
-
-    
-/*
-    const Home = () => {
-        
-        
-        const [message, setMessage] = useState("Super Message via Functional component")
-        const [count, setCount] = useState(0)
-        //const [test, setTest] = useState(0)
-        //Use state function returns an array the first element in this array is your state value, or in my case, "message"
-        // The second value is a function that is used for mutating the the state, in my case, "setMessage". These are only
-        //names and it is recommended you choose descriptive names. Another way but more convuluted way of writing can be done as follows: 
-        
-        //const messageState = useState("Super Message via Functional component 2")
-        //const message = messageState[0]
-        //const setMessage = messageState[1]
-
-        //"useEffect" is called after the component is initialized and when the component is updated
-
-        useEffect(() => {
-            alert("Hello world")
-            setTimeout(() => {
-                setMessage("setMessage with useEffect after a millisecond")
-            }, 1000)
-        }, [])
-
-        const increment = () => {
-            setCount(count + 1)
-            //setTest(test + 1)
-        }
-
-        const decrement = () => {
-             setCount(count - 1)
-        }
-
-        return (
-            <div className="container">
-            <h1>I am Home page</h1>
-            <p>{message}</p>
-            <button onClick={increment}>Increment</button>
-            <div className="counter">{count}</div>
-            <button onClick={decrement}>Decrement</button>
-            </div>
-            
-    //Om man lägger två element bredvid varandra:
-
-    // <h1>I am Home page</h1>
-    // <h2>asdasdasds</h2> 
-
-    //så gillar React inte detta. Det man måste gör då är att "wrappa" elementen 
-    // antingen i en div eller ett React.Fragment. React.Fragment kan man antingen skriva ut såhär:
-
-    // <React.Fragment>
-
-    // eller: 
-
-    // <>
-        )
-    }
-    */
-
-//Class Component = Are larger components container components that contain other components, easier to handle alot of states.
-// More boilerplate, and access to lifecycle functions 
+import React from 'react'
+import Navbar from '../components/Navbar'
+import NavbarClone from '../components/NavbarClone'
 
 class Home extends React.Component {
 
-    state = {
-        message: 'Super Message!!!!'
-    }
-
-   /* 
-   constructor(props){
-        super(props)
-        this.state = {
-            message: 'Super Message!!!!',
-            count: 0
-        }
-
-        this.decrement = this.decrement.bind(this)
-     }*/
-
-    //Lifecycle function, componentDidMount, is a lifecycle function that is called only once
-    componentDidMount(){
-        //debugger
-        setTimeout(() => {
-            // använd set state när du vill ändra på ett state. 
-            this.setState({message: 'I am new message'})
-        }, 1000)
-    }
-
-    displayMessage = (type, count) => {
-        if(type === "increment"){
-            alert(`Your number was incremented! Current value: ${ count }`)
-            return
-        }
-        alert(`Your number was decremented! Current value: ${ count }`)
-    }
-
-    
-    /*increment = () => {
-        const { count } = this.state
-        this.setState({count: count + 1})
-    }
-    // Difference between "increment" and "decrement functions is where it is an arrow function. "decrements" arrow function is
-    // called in the onClick event down in the renderer. A few ways to call it is illustrated aswell on the "onClick functions"
-    decrement() {
-        const { count } = this.state
-        this.setState({count: count - 1})
-    }*/
-
-    //Lifecycle function render
-    //is a lifecycle function that is called whenever a state is changed. 
-
-    render (){
-        //debugger
-        const { message/*, count*/ } = this.state
-        return (
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <NavbarClone />
+        <Catfacts />
+        <section className="hero is-default is-bold">
+          <div className="hero-body">
             <div className="container">
-                <h1>I am Home page</h1>
-                <p>{message}</p>
-                <Counter 
-                onChange = {this.displayMessage}
-                title="I'm the counter"/>
-                {/*<button onClick={this.increment}>Increment</button>
-                <div className="counter">{count}</div>
-                 <button onClick={() => this.decrement()}>Decrement</button> 
-                <button onClick={this.decrement.bind(this)}>Decrement</button>
-                <button onClick={this.decrement}>Decrement</button>*/ }
+              <div className="columns is-vcentered">
+                <div className="column is-5 is-offset-1 landing-caption">
+                  <h1 className="title is-1 is-bold is-spaced">
+                      Learn, Collaborate.
+                  </h1>
+                  <h2 className="subtitle is-5 is-muted">Lorem ipsum sit dolor amet is a dummy text used by typography industry </h2>
+                  <p>
+                    <a className="button cta rounded primary-btn raised">
+                        Get Started
+                    </a>
+                  </p>
+                </div>
+                <div className="column is-5 is-offset-1">
+                  <figure className="image is-4by3">
+                      <img src={process.env.PUBLIC_URL + '/worker.svg'} alt="Description" />
+                  </figure>
+                </div>
+              </div>
             </div>
-        )
-    }
-}  
+          </div>
 
-export default Home 
+
+        </section>
+
+        <section className="section section-feature-grey is-medium">
+          <div className="container">
+            <div className="title-wrapper has-text-centered">
+              <h2 className="title is-2">Great Power Comes </h2>
+              <h3 className="subtitle is-5 is-muted">With great Responsability</h3>
+              <div className="divider is-centered"></div>
+            </div>
+
+            <div className="content-wrapper">
+              <div className="columns">
+                <div className="column is-one-third">
+                  <div className="feature-card is-bordered has-text-centered revealOnScroll delay-1" data-animation="fadeInLeft">
+                    <div className="card-title">
+                       <h4>App builder</h4>
+                    </div>
+                    <div className="card-icon">
+                       <img src="https://images.unsplash.com/photo-1574333751899-72c1e3d963fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" alt=""/>
+                    </div>
+                    <div className="card-text">
+                       <p>This is some explanatory text that is on two rows</p>
+                    </div>
+                    <div className="card-action">
+                       <a href="#" className="button btn-align-md accent-btn raised">Free Trial</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="feature-card is-bordered has-text-centered revealOnScroll delay-2" data-animation="fadeInLeft">
+                    <div className="card-title">
+                      <h4>Cloud integration</h4>
+                    </div>
+                    <div className="card-icon">
+                      <img src="https://images.unsplash.com/photo-1574333751899-72c1e3d963fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" alt=""/>
+                    </div>
+                    <div className="card-text">
+                      <p>This is some explanatory text that is on two rows</p>
+                    </div>
+                    <div className="card-action">
+                      <a href="#" className="button btn-align-md secondary-btn raised">Get Started</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="feature-card is-bordered has-text-centered revealOnScroll delay-3" data-animation="fadeInLeft">
+                    <div className="card-title">
+                      <h4>Addons & Plugins</h4>
+                    </div>
+                    <div className="card-icon">
+                      <img src="https://images.unsplash.com/photo-1574333751899-72c1e3d963fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" alt=""/>
+                    </div>
+                    <div className="card-text">
+                      <p>This is some explanatory text that is on two rows</p>
+                    </div>
+                    <div className="card-action">
+                      <a href="#" className="button btn-align-md primary-btn raised">Get Started</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
+}
+
+export default Home
