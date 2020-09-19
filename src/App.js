@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { Provider } from 'react-redux'
+import initStore from './store'
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import HomePage from 'pages/home'
@@ -10,13 +14,15 @@ import Sidebar from 'components/Sidebar'
 import LoginPage from 'pages/Login'
 import RegisterPage from 'pages/Register'
 
+const store = initStore()
+
 //React component
 //Functional Component
 function App() {
     //NOT HTML
     //JUST JSX()
     return(
-        <div>
+        <Provider store={ store }>
             <Router>
             <Sidebar />
             <Navbar />
@@ -42,7 +48,7 @@ function App() {
                     </Route>
                 </Switch>
             </Router>
-        </div>
+        </Provider>
         );
     }
     

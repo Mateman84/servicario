@@ -1,21 +1,54 @@
-const services = [{
-    id: '2asd8sa7d98',
-    user: 'some_id_1',
-    category: 'mathematics',
-    title: 'I will teach you math fast!',
-    description: 'I am teaching highschool mathematics, algebra, triogometry. I can teach you anything!',
-    price: 10, //per hour
-    image: 'https://images.unsplash.com/photo-1535551951406-a19828b0a76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-  }, {
-    id: 'ssa9d789as7',
-    user: 'some_id_2',
-    category: 'programming',
-    title: 'I will teach you Programming fast!',
-    description: 'I am teaching C++, C#, JS ...',
-    price: 10, //per hour
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-  }]
+
+
+import { createStore, combineReducers } from "redux"
+import servicesReducer from "reducers"
+  // Actions | action creators
+  // Dispatch
+  // reducers
+  // connect
+
+  const addLoggerToDispatch = store => {
+    const dispatch = store.dispatch
+
+    return action => {
+      console.group(action.type)
+      // You can assign color to your console logs as indicated below. "%c" with a second argument: "color: grey"
+      console.log("%c prev state", "color: gray", store.getState())
+      console.log("action", action)
+      const returnValue = dispatch(action)
+      console.log("next state", store.getState())
+      console.groupEnd(action.type)
+      return returnValue
+    }
+  }
+
+  const addPromiseToDispatch = store => {
+    const dispatch = store.dispatch
+
+    return action => {
+      if(typeof action.then === "function") {
+        return action.then(dispatch)
+      }
+      return dispatch(action)
+    }
+  }
+
+  const initStore = () => {
   
-  
-  
-  export const getServices = () => [...services]
+  const serviceApp = combineReducers({
+    service: servicesReducer
+  })
+
+  const browserSupport = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+  const store = createStore(serviceApp, browserSupport)
+
+  if(process.env.NODE_ENV !== "production"){
+    store.dispatch = addLoggerToDispatch(store)
+  }
+  store.dispatch = addPromiseToDispatch(store)
+
+  return store
+}
+
+export default initStore
