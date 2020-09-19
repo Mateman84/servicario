@@ -1,9 +1,11 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
 import React from 'react'
+import { connect} from 'react-redux' // Is a HOC, (Higher Order Component)
 import ServiceItem from '../components/service/ServiceItem'
 import Hero from '../components/Hero'
-import { getServices } from 'store'
+//import { getServices } from 'store'
+import {fetchServices} from 'actions'
 
 class Home extends React.Component {
 
@@ -12,14 +14,13 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const services = getServices()
-    this.setState({services})
+    this.props.dispatch(fetchServices())
   }
 
   renderServices = (services) => services.map(service => <ServiceItem key={service.id} service={service}/>)
 
   render() {
-    const { services } = this.state
+    const { services } = this.props
     return (
       <div>
         <Hero />
@@ -65,4 +66,6 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+const mapStateToProps = state => ({services: state.service.items})
+
+export default connect(mapStateToProps)(Home)
