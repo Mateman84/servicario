@@ -1,43 +1,30 @@
 
-import { FETCH_SERVICES_SUCCESS } from 'types'
+import { FETCH_SERVICES_SUCCESS, FETCH_SERVICEBYID_SUCCESS } from 'types'
 
-import db from "db"
-
-const services = [{
-    id: '2asd8sa7d98',
-    user: 'some_id_1',
-    category: 'mathematics',
-    title: 'I will teach you math fast!',
-    description: 'I am teaching highschool mathematics, algebra, triogometry. I can teach you anything!',
-    price: 10, //per hour
-    image: 'https://images.unsplash.com/photo-1535551951406-a19828b0a76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-  }, {
-    id: 'ssa9d789as7',
-    user: 'some_id_2',
-    category: 'programming',
-    title: 'I will teach you Programming fast!',
-    description: 'I am teaching C++, C#, JS ...',
-    price: 10, //per hour
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-  }]
-
+import * as api from "api"
 
 //Actions can't return functions. They have to return plain objects. This can be solved with "middleware"
 // Or by writing your own "middleware"  
-export const fetchServices = () => {
 
-  return db
-  .collection('services')
-  .get()
-  .then(snapshot => {
-    const services = snapshot.docs.map(doc => doc.data())
-    //debugger
-    return {
+export const fetchServices = () => 
+  api.fetchServices()
+  .then(services => (
+    {
       type: FETCH_SERVICES_SUCCESS,
       services
     }
-  })
-} 
+  )
+)  
+
+export const fetchServiceById = serviceId => 
+  api.fetchServiceById(serviceId)
+  .then(services => (
+    {
+      type: FETCH_SERVICEBYID_SUCCESS,
+      services
+    }
+  )
+) 
 
 
   

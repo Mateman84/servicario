@@ -13,6 +13,7 @@ import Navbar from 'components/Navbar'
 import Sidebar from 'components/Sidebar'
 import LoginPage from 'pages/Login'
 import RegisterPage from 'pages/Register'
+import ServiceDetail from 'pages/ServiceDetail';
 
 const store = initStore()
 
@@ -36,6 +37,9 @@ function App() {
                     </Route>
                     <Route path="/faq">
                         <FaqPage />
+                    </Route>
+                    <Route path="/services/:serviceId">
+                        <ServiceDetail />
                     </Route>
                     <Route path="/services">
                         <ServicesPage />
