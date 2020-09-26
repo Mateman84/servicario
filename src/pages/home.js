@@ -66,6 +66,6 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({services: state.services.items})
+const mapStateToProps = state => ({services: state.services.all})
 
 export default connect(mapStateToProps)(Home)
