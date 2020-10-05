@@ -8,14 +8,10 @@ import { useForm } from 'react-hook-form'
 
 import  { isValidImage, isValidUrl, sameAs } from 'helpers/validators'
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
     
     const { register, handleSubmit, errors, getValues } = useForm()
     
-
-    const getFormData = data => {
-        console.log(data)
-    }
 
     //The name attribute on your input. When you specify name on your input you'll get a value in handleSubmit
     // on an object under that name.
@@ -23,7 +19,7 @@ const RegisterForm = () => {
     // For all the data in the form we are using react-hook-form
 
     return (
-        <form onSubmit={ handleSubmit(getFormData) }>
+        <form onSubmit={ handleSubmit(props.onRegister) }>
             <div className="field">
                 <div className="control">
                 <input ref={ register({required: true, pattern: emailPattern}) }

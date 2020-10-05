@@ -35,12 +35,25 @@ export const fetchServiceById = serviceId => (dispatch, getState) => {
 ) 
 }
 
-export const resetPreviousService = () => (
-  {
-    type: FETCH_SERVICEBYID_SUCCESS,
-    services: {}
-  }
-)
+/* -------------- AUTH --------------
+
+I funktionen nedan så tar jag emot data för att registrera en användare med hjälp av funktionen i
+"api.js" datan jag tar in, 'registerFormData' destrukturiserar jag när jag skriver {...registerFormData}
+
+*/
+export const register = (registerFormData) => dispatch => {
+  return api
+  .registerUser({...registerFormData})
+  .then(_ => {
+    return true
+  }, (errorMessage) => {
+    console.log(errorMessage)
+    return Promise.reject(errorMessage)
+  })
+}
+
+
+
 
 
   
