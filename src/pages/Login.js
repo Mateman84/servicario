@@ -38,7 +38,7 @@ const Login = () => {
                         </div>
                     </div>
                     <button
-                        type="button"
+                        type="submit"
                         className="button is-block is-info is-large is-fullwidth">Sign In</button>
                     </form>
                 </div>

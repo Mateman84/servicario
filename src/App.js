@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ToastProvider } from 'react-toast-notifications'
 import { Provider } from 'react-redux'
 import initStore from './store'
 
@@ -24,34 +25,36 @@ function App() {
     //JUST JSX()
     return(
         <Provider store={ store }>
-            <Router>
-            <Sidebar />
-            <Navbar />
-            <Navbar id="navbar-clone" />
-                <Switch>
-                    <Route path="/Register">
-                        <RegisterPage />
-                    </Route>
-                    <Route path="/Login">
-                        <LoginPage />
-                    </Route>
-                    <Route path="/faq">
-                        <FaqPage />
-                    </Route>
-                    <Route path="/services/:serviceId">
-                        <ServiceDetail />
-                    </Route>
-                    <Route path="/services">
-                        <ServicesPage />
-                    </Route>
-                    <Route path="/profile">
-                        <ProfilePage />
-                    </Route>
-                    <Route path="/">
-                        <HomePage />
-                    </Route>
-                </Switch>
-            </Router>
+            <ToastProvider>
+                <Router>
+                    <Navbar />
+                    <Navbar id="navbar-clone" />
+                    <Sidebar />
+                    <Switch>
+                        <Route path="/Register">
+                            <RegisterPage />
+                        </Route>
+                        <Route path="/Login">
+                            <LoginPage />
+                        </Route>
+                        <Route path="/faq">
+                            <FaqPage />
+                        </Route>
+                        <Route path="/services/:serviceId">
+                            <ServiceDetail />
+                        </Route>
+                        <Route path="/services">
+                            <ServicesPage />
+                        </Route>
+                        <Route path="/profile">
+                            <ProfilePage />
+                        </Route>
+                        <Route path="/">
+                            <HomePage />
+                        </Route>
+                    </Switch>
+                </Router>
+            </ToastProvider>
         </Provider>
         );
     }

@@ -1,21 +1,27 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react'
 import RegisterForm from 'components/auth/RegisterForm'
 import { register } from 'actions'
+import { useToasts } from 'react-toast-notifications'
+import { Redirect } from 'react-router-dom'
+
 
 const Register = (props) => {
 
+    const [ redirect, setRedirect ] = useState(false)
+    const { addToast } = useToasts()
+
     const registerUser = (userData) => {
-        props.dispatch(register(userData))
-        .then((_) => {
-
-        }, (errorMessage) => {
-
-        })
+        
+        register(userData)
+        .then(
+            _ => setRedirect(true), errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 })
+            )
     }
+    
 
+    if (redirect) {return <Redirect to="/" />} 
     return (
         <div className="auth-page">
             <div className="container has-text-centered">
@@ -39,4 +45,9 @@ const Register = (props) => {
     )
 }
 
-export default connect()(Register)
+export default Register
+
+// Below is code snippets for another way of re-routing to homepage
+//import { withRouter } from 'react-router-dom'
+//props.history.push('/')} <--- goes in under "registerUser" function
+// export default withRouter(Register)

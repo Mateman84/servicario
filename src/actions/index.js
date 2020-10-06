@@ -41,16 +41,7 @@ I funktionen nedan så tar jag emot data för att registrera en användare med h
 "api.js" datan jag tar in, 'registerFormData' destrukturiserar jag när jag skriver {...registerFormData}
 
 */
-export const register = (registerFormData) => dispatch => {
-  return api
-  .registerUser({...registerFormData})
-  .then(_ => {
-    return true
-  }, (errorMessage) => {
-    console.log(errorMessage)
-    return Promise.reject(errorMessage)
-  })
-}
+export const register = (registerFormData) => api.registerUser({...registerFormData})
 
 
 
