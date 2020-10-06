@@ -42,6 +42,21 @@ I funktionen nedan så tar jag emot data för att registrera en användare med h
 
 */
 export const register = (registerFormData) => api.registerUser({...registerFormData})
+export const login = (loginData) => api.login({...loginData})
+export const onAuthStateChanged = onAuthCallback => api.onAuthStateChanged(onAuthCallback)
+
+export const storeAuthUser = authUser => dispatch => {
+  if(authUser) {
+    return api
+    .getUserProfile(authUser.uid)
+    .then(userWithProfile => {
+
+      return userWithProfile
+    })
+  } else {
+    return  
+  }
+}
 
 
 
