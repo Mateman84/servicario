@@ -45,8 +45,8 @@ export const registerUser = async ({ email, password, fullName, avatar }) => {
 }
 
 
-export const login = async({email, password}) => {
-    return await firebase.auth().signInWithEmailAndPassword(email, password)
+export const login = ({email, password}) => {
+    firebase.auth().signInWithEmailAndPassword(email, password)
     .catch(error => Promise.reject(error.message))
 }
 
