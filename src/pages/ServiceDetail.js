@@ -5,17 +5,23 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchServiceById } from 'actions'
 
+import Spinner from 'components/Spinner'
+//import services from 'reducers/services'
+
 const ServiceDetail = (props) => {
     
     const { serviceId } = useParams()
-    const { dispatch } = props
+    const { dispatch, isFetching } = props
 
     useEffect(() => {
         dispatch(fetchServiceById(serviceId))
     }, [serviceId, dispatch])
 
     const {service} = props
-    console.log("Här har vi en:" + props)
+    //console.log("Här har vi en:" + props)
+
+    debugger
+    if(isFetching || serviceId !== service.id) { return <Spinner /> }
 
     return (
     <section className="hero is-fullheight is-default is-bold">
@@ -57,6 +63,11 @@ const ServiceDetail = (props) => {
     )
 }   
 
-const mapStateToProps = state => ({ service: state.selectedService.item })
+const mapStateToProps = ({selectedService}) => (
+    { 
+        service: selectedService.item, 
+        isFetching: selectedService.isFetching
+    }
+)
 
 export default connect(mapStateToProps)(ServiceDetail) 

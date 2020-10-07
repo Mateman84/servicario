@@ -4,7 +4,6 @@ import React from 'react'
 import { connect} from 'react-redux' // Is a HOC, (Higher Order Component)
 import ServiceItem from '../components/service/ServiceItem'
 import Hero from '../components/Hero'
-//import { getServices } from 'store'
 import {fetchServices} from 'actions'
 
 class Home extends React.Component {
@@ -66,6 +65,6 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({services: state.services.items})
+const mapStateToProps = state => ({services: state.services.all})
 
 export default connect(mapStateToProps)(Home)
