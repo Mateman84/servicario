@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { login } from 'actions'
 import { useToasts } from 'react-toast-notifications'
 import { Redirect } from 'react-router-dom'
+import onlyGuests from 'components/hoc/onlyGuests'
 
 const Login = () => {
 
@@ -13,11 +14,8 @@ const Login = () => {
     const [ redirect, setRedirect ] = useState(false)
 
     const onLogin = loginData => {
-        login(loginData)
-            .then(
-                _ => setRedirect(true),
-                errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 })
-            )     
+        login(loginData).then(_ => setRedirect(true), 
+                errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 }))
     }
     if (redirect) {return <Redirect to="/" />} 
     return (
@@ -76,4 +74,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default onlyGuests(Login)

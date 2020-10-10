@@ -5,6 +5,7 @@ import RegisterForm from 'components/auth/RegisterForm'
 import { register } from 'actions'
 import { useToasts } from 'react-toast-notifications'
 import { Redirect } from 'react-router-dom'
+import onlyGuests from 'components/hoc/onlyGuests'
 
 
 const Register = (props) => {
@@ -45,7 +46,7 @@ const Register = (props) => {
     )
 }
 
-export default Register
+export default onlyGuests(Register)
 
 // Below is code snippets for another way of re-routing to homepage
 //import { withRouter } from 'react-router-dom'
