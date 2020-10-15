@@ -3,6 +3,8 @@ import { FETCH_SERVICES_SUCCESS, FETCH_SERVICEBYID_SUCCESS, REQUEST_SERVICE, SET
 
 import * as api from "api"
 
+// -------------- SERVICES STARTS --------------
+
 //Actions can't return functions. They have to return plain objects. This can be solved with "middleware"
 // Or by writing your own "middleware"  
 
@@ -35,7 +37,16 @@ export const fetchServiceById = serviceId => (dispatch, getState) => {
 ) 
 }
 
-/* -------------- AUTH --------------
+export const createService = (newService, userId) => {
+  newService.price = parseInt(newService.price, 10)
+  newService.user = userId
+
+  return api.createService(newService)
+}
+
+// -------------- SERVICES ENDS --------------
+
+/* -------------- AUTH STARTS --------------
 
 I funktionen nedan så tar jag emot data för att registrera en användare med hjälp av funktionen i
 "api.js" datan jag tar in, 'registerFormData' destrukturiserar jag när jag skriver {...registerFormData}
@@ -57,7 +68,7 @@ export const storeAuthUser = authUser => dispatch => {
   }
 }
 
-
+// -------------- AUTH ENDS --------------
 
 
 

@@ -4,7 +4,7 @@ import 'firebase/auth'
 
 import db from 'db'
 
-// ------------------- SERVICES --------------------
+// ------------------- SERVICES START --------------------
 
 export const fetchServiceById = serviceId => 
     db.collection('services')
@@ -22,7 +22,16 @@ export const fetchServices = () =>
     }
 )
 
-// ------------------- AUTH --------------------
+export const createService = newService => {
+    return db
+    .collection('services')
+    .add(newService)
+    .then(docRef => docRef.id)
+}
+
+// ------------------- SERVICES END --------------------
+
+// ------------------- AUTH START --------------------
 
 const createUserProfile = (userProfile) => 
     db

@@ -9,21 +9,29 @@ import LoginPage from 'pages/Login'
 import RegisterPage from 'pages/Register'
 import ServiceDetail from 'pages/ServiceDetail'
 import SecretPage from 'pages/Secret'
+import ServiceCreate from 'pages/servicePages/CreateService'
+
+/* Goes through the paths from top to botton, so when it comes to my services
+"ServiceCreate" services needs to be above the "ServiceDetail" page
+*/
 
 const Routes = () => {
     return (
         <Switch>
-            <Route path="/Register">
+            <Route path="/register">
                 <RegisterPage />
             </Route>
-            <Route path="/Login">
+            <Route path="/login">
                 <LoginPage />
             </Route>
-            <Route path="/Secret">
+            <Route path="/secret">
                 <SecretPage />
             </Route>
             <Route path="/faq">
                 <FaqPage />
+            </Route>
+            <Route path="/services/new">
+                <ServiceCreate />
             </Route>
             <Route path="/services/:serviceId">
                 <ServiceDetail />
