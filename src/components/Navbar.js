@@ -76,23 +76,26 @@ const Navbar = props => {
             <Link to="/faq" className="navbar-item is-secondary">
                 FAQ
             </Link>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
-                  Dropdown
-              </a>
+            { isAuth &&
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                    Manage
+                </a>
 
-              <div className="navbar-dropdown">
-                <a className="navbar-item">
-                    Dropdown item
-                </a>
-                <a className="navbar-item">
-                    Dropdown item
-                </a>
-                <a className="navbar-item">
-                    Dropdown item
-                </a>
+                <div className="navbar-dropdown">
+                  <Link 
+                  to="/services/new"
+                  className="navbar-item">
+                      Create Services
+                  </Link>
+                  <Link 
+                  to="/services/me"
+                  className="navbar-item">
+                      Your Services
+                  </Link>
+                </div>
               </div>
-            </div>
+          }
           { !isAuth &&
             <React.Fragment>
               <Link to="/Login" className="navbar-item is-secondary modal-trigger" data-modal="auth-modal">

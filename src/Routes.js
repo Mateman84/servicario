@@ -10,6 +10,7 @@ import RegisterPage from 'pages/Register'
 import ServiceDetail from 'pages/ServiceDetail'
 import SecretPage from 'pages/Secret'
 import ServiceCreate from 'pages/servicePages/CreateService'
+import UserServices from 'pages/servicePages/UserServices'
 
 /* Goes through the paths from top to botton, so when it comes to my services
 "ServiceCreate" services needs to be above the "ServiceDetail" page
@@ -29,6 +30,9 @@ const Routes = () => {
             </Route>
             <Route path="/faq">
                 <FaqPage />
+            </Route>
+            <Route path="/services/me">
+                <UserServices />
             </Route>
             <Route path="/services/new">
                 <ServiceCreate />

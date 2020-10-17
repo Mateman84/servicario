@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { fetchServiceById } from 'actions'
 
 import Spinner from 'components/Spinner'
+import Modal from 'components/Modal'
 //import services from 'reducers/services'
 
 const ServiceDetail = (props) => {
@@ -20,7 +21,7 @@ const ServiceDetail = (props) => {
     const {service} = props
     //console.log("Här har vi en:" + props)
 
-    debugger
+    //debugger
     if(isFetching || serviceId !== service.id) { return <Spinner /> }
 
     return (
@@ -41,10 +42,8 @@ const ServiceDetail = (props) => {
                         { service.description }
                     </h2>
                     <br />
-                    <p className="has-text-centered">
-                        <button className="button is-medium is-info is-outlined">
-                            Learn more
-                        </button>
+                    <p className="has-text-centered" >
+                        <Modal openButtonText="Make An Offer" />
                     </p>
                 </div>
                 </div>
