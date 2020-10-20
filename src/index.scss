@@ -33,7 +33,15 @@ $border-grey: #ccc;
 $muted-grey: #999;
 $section-grey: #fbfbfb;
 
-//AUTH Starts
+//MODAL Start
+
+.modal {
+    text-align: left !important;
+}
+
+//MODAL End
+
+//AUTH Start
 
 .auth-page {
     .hero.is-success {

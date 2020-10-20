@@ -27,7 +27,7 @@ const ServiceCreate = ({ auth }) => {
         console.log("Name is: ", name)
         console.log("Value is: ", value)
         */
-        setServiceForm({...serviceForm, [name]:value})
+        setServiceForm({...serviceForm, [name]:value}) //
     }
 
     const handleSubmit = () => {

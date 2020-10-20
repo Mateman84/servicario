@@ -27,10 +27,12 @@ const Modal = props => {
             </button>
           </header>
           <section className="modal-card-body">
-            <h1>Hello I am Modal! (:</h1>
+            { props.children }
           </section>
           <footer className="modal-card-foot">
-            <button className="button is-success">Save changes</button>
+            <button 
+            onClick={ props.onModalSubmit }
+            className="button is-success">Save changes</button>
             <button 
             onClick={() => {changeModalState(false)}}
             className="button">Cancel
