@@ -4,7 +4,7 @@ import { FETCH_SERVICES_SUCCESS,
     REQUEST_SERVICE, 
     FETCH_USER_SERVICES_SUCCESS } from 'types'
   
-  import * as api from "api"
+  import * as api from 'api'
   
 
 //Actions can't return functions. They have to return plain objects. This can be solved with "middleware"

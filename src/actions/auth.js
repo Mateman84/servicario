@@ -2,13 +2,11 @@
 import { SET_AUTH_USER, 
     RESET_AUTH_STATE } from 'types'
   
-  import * as api from "api"
+  import * as api from 'api'
   
-
-
 /* I funktionen nedan så tar jag emot data för att registrera en användare med hjälp av funktionen i
-"api.js" datan jag tar in, 'registerFormData' destrukturiserar jag när jag skriver {...registerFormData}*/
-
+"api.js" objektet jag tar in, 'registerFormData' destrukturiserar jag när jag skriver {...registerFormData}
+vilket innebär att register = registerformdata-objektet*/
 
 export const register = (registerFormData) => api.registerUser({...registerFormData})
 export const login = loginData => api.login({...loginData})
