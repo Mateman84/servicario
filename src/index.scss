@@ -1,7 +1,11 @@
+
 body {
     margin: 0;
 }
   
+@import './styles/auth.scss';
+@import './styles/services.scss';
+
 /* ==========================================================================
 Color variables
 ========================================================================== */
@@ -32,7 +36,16 @@ $dark-grey: #344258;
 $border-grey: #ccc;
 $muted-grey: #999;
 $section-grey: #fbfbfb;
+  
+.s-m-r {
+    margin-right: 5px;
+}
 
+  .feature-card.offer-card {
+      height: auto;
+      padding-bottom: 20px;
+  }
+    
 //MODAL Start
 
 .modal {
@@ -41,60 +54,6 @@ $section-grey: #fbfbfb;
 
 //MODAL End
 
-//AUTH Start
-
-.auth-page {
-    .hero.is-success {
-      background: #F2F6FA;
-    }
-    .hero .nav, .hero.is-success .nav {
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-    .box {
-      margin-top: 5rem;
-    }
-    .avatar {
-      margin-top: -70px;
-      padding-bottom: 20px;
-    }
-    .avatar img {
-      padding: 5px;
-      background: #fff;
-      border-radius: 50%;
-      -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
-      box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
-    }
-    input {
-      font-weight: 300;
-    }
-    p {
-      font-weight: 700;
-    }
-    p.subtitle {
-      padding-top: 1rem;
-    }
-  }
-
-  //AUTH Ends
-
-  // CREATE SERVICE start
-
-.create-page {
-margin-top: 70px;
-margin-bottom: 70px;
-
-.form-container {
-    max-width: 860px;
-    margin: 0 auto;
-}
-
-.field.is-grouped {
-    margin-top: 20px;
-}
-}
-
-  // CREATE SERVICE ends
 /* ==========================================================================
 General Keyframes animations
 ========================================================================== */

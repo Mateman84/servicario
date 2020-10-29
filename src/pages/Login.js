@@ -12,7 +12,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm()   
     const { addToast } = useToasts()
     const [ redirect, setRedirect ] = useState(false)
-
+    
     const onLogin = loginData => {
         login(loginData).then(_ => setRedirect(true), 
                 errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 }))

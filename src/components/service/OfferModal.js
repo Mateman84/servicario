@@ -12,7 +12,7 @@ const OfferModal = ({service, auth}) => {
         fromUser: "", //User making offer
         toUser: "", //User recieving offer
         service: "", //Service ID for the service the offer is being made.
-        status: "Pending", //Status will be pending until offer is accepted or declined
+        status: "pending", //Status will be pending until offer is accepted or declined
         price: 0,
         time: 0,
         note: ""

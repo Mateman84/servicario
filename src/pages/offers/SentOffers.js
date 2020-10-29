@@ -1,7 +1,10 @@
 import React from 'react'
+import { withToastManager } from 'react-toast-notifications';
 import withAuth from 'components/hoc/withAuth'
 import ServiceItem from 'components/service/ServiceItem'
-import { fetchSentOffers } from 'actions'
+import { connect } from 'react-redux'
+import { fetchSentOffers, collaborate } from 'actions'
+import { newCollaboration, newMessage } from 'helpers/offers'
 
 
 class SentOffers extends React.Component {
@@ -11,38 +14,64 @@ class SentOffers extends React.Component {
         this.props.dispatch(fetchSentOffers(auth.user.uid))
     }
 
+    createCollaboration = (offer) => {
+        const { auth: { user }, toastManager} = this.props
+        const collaboration = newCollaboration({offer, fromUser: user})
+        const message = newMessage({offer, fromUser: user})
+        
+        //(_ => alert("Collaboration started"))
+        this.props.collaborate({collaboration, message})
+        .then(_ => toastManager.add("Collaboration started", {
+            appearance: 'success',
+            autoDismiss: true,
+          }))
+    }
+
     render (){
+        const { offers } = this.props
         return (
             <div className="container">
                 <div className="content-wrapper">
                 <h1 className="title">Sent Offers</h1>
                 <div className="columns">
-                    <div className="column is-one-third">
-                    { /* <ServiceItem
-                        noButton
-                        className="offer-card"
-                        service={o.service}>
-                        <div className="tag is-large">
-                        {o.status}
-                        </div>
-                        <hr />
-                        <div className="service-offer">
-                        <div>
-                            <span className="label">From User:</span> {o.toUser.fullName}
-                        </div>
-                        <div>
-                            <span className="label">Note:</span> {o.note}
-                        </div>
-                        <div>
-                            <span className="label">Price:</span> ${o.price}
-                        </div>
-                        <div>
-                            <span className="label">Time:</span> {o.time} hours
-                        </div>
-                        </div>
-                    </ServiceItem>
-                    */ }
+                { offers.map(offer => (
+                    <div 
+                        key={offer.id}
+                        className="column is-one-third">
+                        <ServiceItem
+                                noButton
+                                className="offer-card"
+                                service={offer.service}>
+                                <div className="tag is-large">
+                                {offer.status}
+                                </div>
+                                <hr />
+                                <div className="service-offer">
+                                <div>
+                                    <span className="label">To User:</span> {offer.toUser.fullName}
+                                </div>
+                                <div>
+                                    <span className="label">Note:</span> {offer.note}
+                                </div>
+                                <div>
+                                    <span className="label">Price:</span> ${offer.price}
+                                </div>
+                                <div>
+                                    <span className="label">Time:</span> {offer.time} hours
+                                </div>
+                            </div>
+                            { offer.status === "accepted" && !offer.collaborationCreated && 
+                            <div>
+                                <hr />
+                                <button 
+                                onClick={() => this.createCollaboration(offer) }
+                                className="button is-success">Collaborate</button>
+                            </div>
+                            }
+                        </ServiceItem>    
                     </div>
+                    ))
+                    }
                 </div>
                 </div>
             </div>
@@ -50,6 +79,10 @@ class SentOffers extends React.Component {
         }
     }
 
-export default withAuth(SentOffers)
+    const mapStateToProps = ({offers}) => ({offers: offers.sent})
+
+const sentOffersWithToast = withToastManager(SentOffers)
+
+export default withAuth(connect(mapStateToProps, {collaborate})(sentOffersWithToast))
 
 

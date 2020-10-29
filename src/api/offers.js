@@ -40,3 +40,18 @@ The data can be extracted with .data() or .get(<field>) to get a specific field.
 For a DocumentSnapshot that points to a non-existing document, any data access will return 'undefined'. 
 You can use the exists property to explicitly verify a document's existence.
 */
+
+export const changeOfferStatus = (offerId, status) => {
+    return db
+    .collection("offers")
+    .doc(offerId)
+    .update({status})
+}
+
+export const markOfferAsInCollaboration = offerId => 
+    db
+    .collection("offers")
+    .doc(offerId)
+    .update({collaborationCreated: true})
+
+
