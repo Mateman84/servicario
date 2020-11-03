@@ -8,7 +8,7 @@ import { createService } from 'actions'
 
 // Responsible for all my service creating needs.
 
-const ServiceCreate = ({ auth }) => {
+const ServiceCreate = ({auth}) => {
  
     const [ redirect, setRedirect ] = useState(false)
 
@@ -21,23 +21,15 @@ const ServiceCreate = ({ auth }) => {
     })
 
     const handleChange = event => {
-        const {name, value } = event.target
-
-        /* Handle Change exampel
-        console.log("Name is: ", name)
-        console.log("Value is: ", value)
-        */
-        setServiceForm({...serviceForm, [name]:value}) //
+        const { name, value } = event.target
+        setServiceForm({...serviceForm, [name]: value})
     }
 
     const handleSubmit = () => {
         const { user } = auth
         createService(serviceForm, user.uid)
-        .then(() => setRedirect(true)) 
-        .catch (() => alert("SOME ERROR"))
-        /* Handle Submit exampel 
-        alert(JSON.stringify(serviceForm))
-        */
+            .then(() => setRedirect(true)) 
+            .catch (() => alert("SOME ERROR"))
     }
 
     if (redirect) { return <Redirect to="/" /> }

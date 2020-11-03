@@ -14,7 +14,6 @@ export const fetchServices = () =>
     .get()
     .then(snapshot => {
     const services = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    //debugger
     return services
     }
 )
@@ -23,7 +22,7 @@ export const fetchServices = () =>
 
 export const fetchUserServices = userId => 
     db.collection('services')
-    .where("user", "==", userId)
+    .where("user", "==", "profiles/" + userId)
     .get()
     .then(snapshot => {
     const services = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))

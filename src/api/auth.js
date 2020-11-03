@@ -4,41 +4,42 @@ import 'firebase/auth'
 
 import db from 'db'
 
-const createUserProfile = (userProfile) => 
-db
-.collection('profiles')
-.doc(userProfile.uid)
-.set(userProfile)
-
-
-
+const createUserProfile = userProfile => 
+    db
+    .collection('profiles')
+    .doc(userProfile.uid)
+    .set(userProfile)
+    
+    
+    
 export const registerUser = async ({ email, password, fullName, avatar }) => {
-try {
-    const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    const { user } = response
-    const userProfile = { uid: user.uid, fullName, email, avatar, services: [], description: "" }
-    await createUserProfile(userProfile)
-    return userProfile  
-} catch (error) {
-    return Promise.reject(error.message)
+    try {
+        const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
+        const { user } = response
+        const userProfile = { uid: user.uid, fullName, email, avatar, services: [], description: "" }
+        await createUserProfile(userProfile)
+        return userProfile  
+    } catch (error) {
+        return Promise.reject(error.message)
+    }
 }
-}
-
-export const onAuthStateChanged = onAuthCallback => 
-firebase.auth().onAuthStateChanged(onAuthCallback)
-
-export const getUserProfile = uid => 
-db.collection('profiles')
-.doc(uid)
-.get()
-.then(snapshot => ({uid, ...snapshot.data()}))
-
 
 export const login = ({email, password}) =>
-firebase.auth().signInWithEmailAndPassword(email, password)
-.catch(error => Promise.reject(error.message))
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(error => Promise.reject(error.message))
 
 export const logout = () => firebase.auth().signOut()
+
+export const onAuthStateChanged = onAuthCallback => 
+    firebase.auth().onAuthStateChanged(onAuthCallback)
+
+export const getUserProfile = uid => 
+    db.collection('profiles')
+    .doc(uid)
+    .get()
+    .then(snapshot => ({uid, ...snapshot.data()}))
+
+
 
 
 

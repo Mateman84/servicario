@@ -19,8 +19,12 @@ const withAuth = Component => {
             return auth.isAuth ? <Component {...this.props} /> : <Redirect to="/login" /> 
         }
     }   
-    const mapStateToProps = (state) => ({auth: state.auth})
-    return connect(mapStateToProps)(WithAuth)
+
+    // const mapStateToProps = (state) => ({auth: state.auth})
+    // return connect(mapStateToProps)(WithAuth)
+    
+    //const mapStateToProps = (state) => ({auth: state.auth})
+    return connect(({auth}) => ({auth}))(WithAuth)
 }
 
 export default withAuth

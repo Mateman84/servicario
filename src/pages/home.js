@@ -35,7 +35,20 @@ class Home extends React.Component {
             <div className="content-wrapper">
               <div className="columns is-multiline">
               {this.renderServices(services)}
-                {/* services.map(service =>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => ({services: state.services.all})
+
+export default connect(mapStateToProps, {fetchServices})(Home)
+
+/* services.map(service =>
                     <div 
                       key= { service.id }
                       className="column is-one-third">
@@ -55,16 +68,4 @@ class Home extends React.Component {
                       </div>
                     </div>
                   )
-              */ }
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    )
-  }
-}
-
-const mapStateToProps = state => ({services: state.services.all})
-
-export default connect(mapStateToProps, {fetchServices})(Home)
+              */

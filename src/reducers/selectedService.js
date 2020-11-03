@@ -6,7 +6,8 @@ const initSelectedService = () => {
     const item = (state = {}, action) => {
         switch(action.type) {
             case FETCH_SERVICEBYID_SUCCESS:
-                return action.services
+                //return action.services
+                return action.service
             default:
                 return state   
         }
