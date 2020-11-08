@@ -1,14 +1,10 @@
-  // Actions | action creators
-  // Dispatch
-  // reducers
-  // connect
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import serviceApp from 'reducers'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
-  const initStore = () => {
+const initStore = () => {
   const middlewares = [thunk]
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

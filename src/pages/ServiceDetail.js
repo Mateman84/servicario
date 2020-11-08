@@ -7,8 +7,6 @@ import { fetchServiceById } from 'actions'
 
 import Spinner from 'components/Spinner'
 import OfferModal from 'components/service/OfferModal'
-//import Modal from 'components/Modal'
-//import services from 'reducers/services'
 
 const ServiceDetail = (props) => {
     

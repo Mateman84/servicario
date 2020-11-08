@@ -21,12 +21,20 @@ export const fetchServices = () => dispatch =>
 )
 
 export const fetchUserServices = userId => dispatch =>
-  api.fetchUserServices(userId).then(services => 
-  dispatch({type: FETCH_USER_SERVICES_SUCCESS, services}))
+  api
+  .fetchUserServices(userId)
+  .then(services => dispatch(
+    {
+      type: FETCH_USER_SERVICES_SUCCESS, 
+      services
+    }
+  )
+)
 
 export const fetchServiceById = serviceId => (dispatch, getState) => {
-  const lastService = getState().selectedService.item
-  if(lastService.id && lastService.id === serviceId) { return Promise.resolve() }
+    const lastService = getState().selectedService.item
+    if(lastService.id && lastService.id === serviceId) { return Promise.resolve() 
+  }
   
   dispatch({type: REQUEST_SERVICE})
   return api

@@ -1,7 +1,8 @@
 
+import {FETCH_OFFERS_SUCCESS, CHANGE_OFFER_STATUS} from 'types'
+
 import * as api from 'api'
 //import { changeOfferStatus } from 'api'
-import {FETCH_OFFERS_SUCCESS, CHANGE_OFFER_STATUS} from 'types'
 
 export const createOffer = offer => api.createOffer(offer)
 

@@ -4,7 +4,8 @@ import { SET_AUTH_USER, RESET_AUTH_STATE, FETCH_USER_SERVICES_SUCCESS } from 'ty
 const INITIAL_STATE = {
     user: null,
     isAuth: false,
-    isAuthResolved: false
+    isAuthResolved: false,
+    services: []
 }
 
 const auth = (state = INITIAL_STATE, action) => {
@@ -14,7 +15,8 @@ const auth = (state = INITIAL_STATE, action) => {
         case RESET_AUTH_STATE:
             return {...state, isAuthResolved: false}
         case FETCH_USER_SERVICES_SUCCESS:
-            return { ...state, user:{ ...state.user, services: action.services}}
+            console.log("Hej hallå :" + {...state, user:{ ...state.user, services: action.services}})
+            return {...state, user:{ ...state.user, services: action.services}}
         default:
             return state
     }

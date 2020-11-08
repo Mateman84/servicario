@@ -2,6 +2,7 @@
 import 'firebase/auth'
 
 import db from 'db'
+import {createRef} from './index'
 
 export const fetchServiceById = serviceId => 
     db.collection('services')
@@ -20,15 +21,18 @@ export const fetchServices = () =>
 
 // In the function below it occurs to me how I basically are writing SQL querys in my code.
 
-export const fetchUserServices = userId => 
-    db.collection('services')
-    .where("user", "==", "profiles/" + userId)
+export const fetchUserServices = (userId) => {
+    const userRef = createRef("profiles", userId)
+    return db.collection('services')
+    .where("user", "==", userRef)
     .get()
     .then(snapshot => {
-    const services = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    return services
-    }
-)
+        const services = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+        console.log(services)
+        return services
+        }
+    )
+}
 
 export const createService = newService => {
     return db
