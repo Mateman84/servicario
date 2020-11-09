@@ -6,25 +6,32 @@ import initStore from './store'
 import ServiceApp from './ServiceApp'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { onAuthStateChanged, storeAuthUser } from 'actions'
+import { onAuthStateChanged, storeAuthUser, subscribeToMessages } from 'actions'
 
 const store = initStore()
 
-//React component
-//Functional Component
 class App extends React.Component {
-    //NOT HTML
-    //JUST JSX()
 
     componentDidMount() {
         this.unsubscribeAuth = onAuthStateChanged(authUser => {
             store.dispatch(storeAuthUser(authUser))
+
+            if (authUser) {
+                this.unsubscribeMessages = store.dispatch(subscribeToMessages(authUser.uid))
+            }
         })
     }
 
+    //This part of creating an unsubscription function is confusing as hell, 
+    //Basically I create a function whilst checking the store for authUser or messages.
+    // I then call the function in the component will unmount to unmount the data from the store. 
+
     componentWillUnmount(){
         this.unsubscribeAuth()
+        this.unsubscribeMessages()
     }
+
+    //It seems wierd to me that you create a variable that unsubscribes   
 
     render() {
         return(

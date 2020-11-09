@@ -1,5 +1,5 @@
 
-import { SET_AUTH_USER, RESET_AUTH_STATE, FETCH_USER_SERVICES_SUCCESS } from 'types'
+import { SET_AUTH_USER, RESET_AUTH_STATE, FETCH_USER_SERVICES_SUCCESS, FETCH_USER_MESSAGES_SUCCESS } from 'types'
 
 const INITIAL_STATE = {
     user: null,
@@ -17,6 +17,8 @@ const auth = (state = INITIAL_STATE, action) => {
         case FETCH_USER_SERVICES_SUCCESS:
             console.log("Hej hallå :" + {...state, user:{ ...state.user, services: action.services}})
             return {...state, user:{ ...state.user, services: action.services}}
+        case FETCH_USER_MESSAGES_SUCCESS:
+            return {...state, user:{ ...state.user, messages: action.messages}}
         default:
             return state
     }
