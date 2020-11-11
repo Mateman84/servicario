@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ToastProvider } from 'react-toast-notifications'
 import { Provider } from 'react-redux'
 import initStore from './store'
@@ -15,7 +14,8 @@ class App extends React.Component {
     componentDidMount() {
         this.unsubscribeAuth = onAuthStateChanged(authUser => {
             store.dispatch(storeAuthUser(authUser))
-
+            console.log(store.getState())
+            
             if (authUser) {
                 this.unsubscribeMessages = store.dispatch(subscribeToMessages(authUser.uid))
             }

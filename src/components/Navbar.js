@@ -1,8 +1,8 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
 import React, { useEffect } from 'react'
-import { Link } from "react-router-dom"
-
+import { Link } from 'react-router-dom'
+import ReceivedMessages from './ReceivedMessages'
 
 const Navbar = props => {
 
@@ -77,11 +77,11 @@ const Navbar = props => {
                 FAQ
             </Link>
             { isAuth &&
+            <React.Fragment>
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
                     Manage
                 </a>
-
                 <div className="navbar-dropdown">
                   <Link 
                   to="/services/new"
@@ -105,6 +105,15 @@ const Navbar = props => {
                   </Link>
                 </div>
               </div>
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                    Messages
+                </a>
+                <div className="navbar-dropdown navbar-dropdown-messages">
+                  { user.messages && <ReceivedMessages /> }
+                </div>
+              </div>
+            </React.Fragment> 
           }
           { !isAuth &&
             <React.Fragment>
