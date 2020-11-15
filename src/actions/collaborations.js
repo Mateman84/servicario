@@ -2,8 +2,7 @@
 
 import { 
     COLLABORATION_CREATED_FOR_OFFER, 
-    FETCH_USER_MESSAGES_SUCCESS, 
-    MARK_MESSAGE_AS_READ } from 'types'
+    FETCH_USER_MESSAGES_SUCCESS } from 'types'
 
 import * as api from 'api'
 
